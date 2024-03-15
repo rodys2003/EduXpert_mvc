@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 public class NewPerson {
 
-    private Boolean documentType;
+    private byte documentType;
 
     private String documentNumber;
 
