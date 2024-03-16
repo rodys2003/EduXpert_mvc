@@ -1,8 +1,9 @@
 package com.rersdev.eduxpert.controller.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
@@ -10,12 +11,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GetTeacher {
+public class NewTeacher implements Serializable {
 
     private String specialization;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    private String status;
+
     private LocalDate dateStart;
 
-    GetPerson person;
+    private NewPerson person;
 }

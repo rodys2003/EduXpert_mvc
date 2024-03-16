@@ -25,11 +25,11 @@ public class User {
     private UUID id;
 
     @Column(unique = true)
-    private String number;
+    private String documentNumber;
 
     private String password;
 
-    private Boolean status;
+    private Boolean isActive;
 
     private LocalDateTime dateCreated;
 

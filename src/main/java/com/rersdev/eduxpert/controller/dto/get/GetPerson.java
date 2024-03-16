@@ -1,25 +1,27 @@
 package com.rersdev.eduxpert.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class NewPerson {
+public class GetPerson implements Serializable {
 
-    private byte documentType;
+    private GetUser user;
 
-    private String documentNumber;
+    private Byte documentType;
 
     private String name;
 
     private String lastName;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateBirth;
 
     private String phoneNumber;
@@ -29,6 +31,4 @@ public class NewPerson {
     private  String email;
 
     private String address;
-
-    private LocalDateTime dateCreated;
 }
