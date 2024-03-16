@@ -1,6 +1,7 @@
-package com.rersdev.eduxpert.controller.dto;
+package com.rersdev.eduxpert.controller.dto.insert;
 
 
+import com.rersdev.eduxpert.controller.dto.insert.NewPerson;
 import lombok.*;
 
 import java.io.Serializable;

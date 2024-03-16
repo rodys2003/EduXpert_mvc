@@ -1,4 +1,4 @@
-package com.rersdev.eduxpert.controller.dto;
+package com.rersdev.eduxpert.controller.dto.get;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;

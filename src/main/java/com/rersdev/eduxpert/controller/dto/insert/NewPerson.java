@@ -1,4 +1,4 @@
-package com.rersdev.eduxpert.controller.dto;
+package com.rersdev.eduxpert.controller.dto.insert;
 
 import lombok.*;
 
