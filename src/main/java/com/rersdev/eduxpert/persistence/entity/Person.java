@@ -24,7 +24,7 @@ public class Person {
     @UuidGenerator(style = UuidGenerator.Style.RANDOM)
     private UUID id;
 
-    private byte documentType;
+    private Byte documentType;
 
     private String documentNumber;
 
