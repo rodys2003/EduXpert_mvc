@@ -15,7 +15,7 @@ public class NewPerson implements Serializable {
 
     private Byte documentType;
 
-    NewUser user;
+    private NewUser user;
 
     private String name;
 
