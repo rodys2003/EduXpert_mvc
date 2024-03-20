@@ -26,8 +26,6 @@ public class Person {
 
     private Byte documentType;
 
-    private String documentNumber;
-
     private String name;
 
     private String lastName;
