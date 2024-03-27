@@ -1,15 +1,12 @@
 package com.rersdev.eduxpert.persistence.dao;
 
 import com.rersdev.eduxpert.persistence.entity.Teacher;
-
-import java.util.List;
-import java.util.UUID;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ITeacherDAO {
 
-    List<Teacher> findAll();
+    Page<Teacher> findAll(Pageable pageable);
 
-    Teacher findById(UUID id);
-
-    Teacher save(Teacher teacher);
+    void save(Teacher teacher);
 }
