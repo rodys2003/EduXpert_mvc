@@ -1,4 +1,4 @@
-package com.rersdev.eduxpert.config.advice.exeption;
+package com.rersdev.eduxpert.config.advice;
 
 import com.rersdev.eduxpert.controller.dto.ApiError;
 import jakarta.persistence.EntityNotFoundException;
