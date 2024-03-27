@@ -1,15 +1,13 @@
 package com.rersdev.eduxpert.service;
 
-import com.rersdev.eduxpert.persistence.entity.Teacher;
-
-import java.util.List;
-import java.util.UUID;
+import com.rersdev.eduxpert.controller.dto.get.GetTeacher;
+import com.rersdev.eduxpert.controller.dto.insert.NewTeacher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ITeacherService {
 
-    List<Teacher> findAll();
+    Page<GetTeacher> findAll(Pageable pageable);
 
-    Teacher findById(UUID id);
-
-    Teacher save(Teacher teacher);
+    void save(NewTeacher teacher);
 }
