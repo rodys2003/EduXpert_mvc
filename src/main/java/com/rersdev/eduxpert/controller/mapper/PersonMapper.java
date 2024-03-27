@@ -1,7 +1,6 @@
 package com.rersdev.eduxpert.controller.mapper;
 
 import com.rersdev.eduxpert.controller.dto.get.GetPerson;
-import com.rersdev.eduxpert.controller.dto.insert.NewPerson;
 import com.rersdev.eduxpert.persistence.entity.Person;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
@@ -11,7 +10,4 @@ import org.mapstruct.MappingConstants;
 public interface PersonMapper {
 
     GetPerson toGetDTO(Person person);
-
-
-    Person toEntity(NewPerson person);
 }
