@@ -4,7 +4,6 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -30,6 +29,4 @@ public class NewPerson implements Serializable {
     private  String email;
 
     private String address;
-
-    private LocalDateTime dateCreated;
 }

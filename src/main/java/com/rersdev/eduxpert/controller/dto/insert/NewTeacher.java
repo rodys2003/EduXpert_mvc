@@ -14,8 +14,6 @@ public class NewTeacher implements Serializable {
 
     private String specialization;
 
-    private String status;
-
     private LocalDate dateStart;
 
     private NewPerson person;

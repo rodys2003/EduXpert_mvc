@@ -3,7 +3,6 @@ package com.rersdev.eduxpert.controller.dto.insert;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -13,8 +12,4 @@ import java.time.LocalDateTime;
 public class NewUser implements Serializable {
 
     private String documentNumber;
-
-    private String password;
-
-    private LocalDateTime dateCreated;
 }
