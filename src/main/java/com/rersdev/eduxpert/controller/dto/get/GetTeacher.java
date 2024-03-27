@@ -13,6 +13,8 @@ import java.time.LocalDate;
 @Builder
 public class GetTeacher implements Serializable {
 
+    private String id;
+
     private String specialization;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
