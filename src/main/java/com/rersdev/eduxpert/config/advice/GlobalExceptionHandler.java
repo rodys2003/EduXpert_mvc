@@ -1,6 +1,6 @@
 package com.rersdev.eduxpert.config.advice;
 
-import com.rersdev.eduxpert.controller.dto.ApiError;
+import com.rersdev.eduxpert.controllers.dto.ApiError;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
