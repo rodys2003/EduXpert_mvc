@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 
@@ -40,5 +42,10 @@ public class TeacherServiceImpl implements ITeacherService {
                 .map(teacherMapper::toGetDTO)
                 .toList();
         return new PageImpl<>(teacherDtoList);
+    }
+
+    @Override
+    public Optional<GetTeacher> findById(UUID id) {
+        return teacherDAO.findById(id).map(teacherMapper::toGetDTO);
     }
 }
