@@ -4,7 +4,7 @@ import com.rersdev.eduxpert.controllers.dto.get.GetTeacher;
 import com.rersdev.eduxpert.controllers.dto.insert.NewTeacher;
 import com.rersdev.eduxpert.controllers.mappers.TeacherMapper;
 import com.rersdev.eduxpert.controllers.mappers.my_mappers.SaveTeacherMapper;
-import com.rersdev.eduxpert.persistences.dao.ITeacherDAO;
+import com.rersdev.eduxpert.persistences.repositories.TeacherRepository;
 import com.rersdev.eduxpert.services.ITeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,7 +22,7 @@ import java.util.UUID;
 @Service
 public class TeacherServiceImpl implements ITeacherService {
 
-    private final ITeacherDAO teacherDAO;
+    private final TeacherRepository teacherRepository;
 
     private final SaveTeacherMapper saveTeacherMapper;
 
@@ -31,14 +31,14 @@ public class TeacherServiceImpl implements ITeacherService {
         if (teacherDto.getDateStart() == null) {
             teacherDto.setDateStart(LocalDate.now());
         }
-        this.teacherDAO.save(saveTeacherMapper.ToEntity(teacherDto));
+        this.teacherRepository.save(saveTeacherMapper.ToEntity(teacherDto));
     }
 
     private final TeacherMapper teacherMapper;
 
     @Override
     public Page<GetTeacher> findAll(Pageable pageable) {
-        List<GetTeacher> teacherDtoList = teacherDAO.findAll(pageable).stream()
+        List<GetTeacher> teacherDtoList = teacherRepository.findAll(pageable).stream()
                 .map(teacherMapper::toGetDTO)
                 .toList();
         return new PageImpl<>(teacherDtoList);
@@ -46,6 +46,6 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public Optional<GetTeacher> findById(UUID id) {
-        return teacherDAO.findById(id).map(teacherMapper::toGetDTO);
+        return teacherRepository.findById(id).map(teacherMapper::toGetDTO);
     }
 }
