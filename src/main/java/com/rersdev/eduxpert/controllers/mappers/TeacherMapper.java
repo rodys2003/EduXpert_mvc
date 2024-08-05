@@ -1,6 +1,7 @@
 package com.rersdev.eduxpert.controllers.mappers;
 
 import com.rersdev.eduxpert.controllers.dto.get.GetTeacher;
+import com.rersdev.eduxpert.controllers.dto.insert.NewTeacher;
 import com.rersdev.eduxpert.persistences.entities.Teacher;
 import org.mapstruct.*;
 
@@ -9,4 +10,6 @@ import org.mapstruct.*;
 public interface TeacherMapper {
 
     GetTeacher toGetDTO(Teacher teacher);
+
+    Teacher toEntity(NewTeacher newTeacher);
 }
