@@ -1,7 +1,7 @@
 package com.rersdev.eduxpert.services.impl;
 
-import com.rersdev.eduxpert.controllers.dto.get.GetTeacher;
-import com.rersdev.eduxpert.controllers.dto.insert.NewTeacher;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherInfoDto;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherDto;
 import com.rersdev.eduxpert.controllers.mappers.TeacherMapper;
 import com.rersdev.eduxpert.persistences.entities.enums.TeacherStatus;
 import com.rersdev.eduxpert.persistences.repositories.TeacherRepository;
@@ -26,20 +26,20 @@ public class TeacherServiceImpl implements ITeacherService {
     private final TeacherMapper teacherMapper;
 
     @Override
-    public void save(NewTeacher teacherDto) {
+    public void save(TeacherDto teacherDto) {
         this.teacherRepository.save(teacherMapper.toEntity(teacherDto));
     }
 
     @Override
-    public Page<GetTeacher> findAll(Pageable pageable) {
-        List<GetTeacher> teacherDtoList = teacherRepository.findAllByStatus(TeacherStatus.ACTIVO, pageable).stream()
+    public Page<TeacherInfoDto> findAll(Pageable pageable) {
+        List<TeacherInfoDto> teacherDtoList = teacherRepository.findAllByStatus(TeacherStatus.ACTIVO, pageable).stream()
                 .map(teacherMapper::toGetDTO)
                 .toList();
         return new PageImpl<>(teacherDtoList);
     }
 
     @Override
-    public Optional<GetTeacher> findById(UUID id) {
+    public Optional<TeacherInfoDto> findById(UUID id) {
         return teacherRepository.findById(id).map(teacherMapper::toGetDTO);
     }
 }

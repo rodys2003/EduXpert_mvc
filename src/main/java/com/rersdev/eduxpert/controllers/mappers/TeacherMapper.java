@@ -1,7 +1,7 @@
 package com.rersdev.eduxpert.controllers.mappers;
 
-import com.rersdev.eduxpert.controllers.dto.get.GetTeacher;
-import com.rersdev.eduxpert.controllers.dto.insert.NewTeacher;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherInfoDto;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherDto;
 import com.rersdev.eduxpert.persistences.entities.Teacher;
 import org.mapstruct.*;
 
@@ -9,7 +9,7 @@ import org.mapstruct.*;
         uses = {PersonMapper.class})
 public interface TeacherMapper {
 
-    GetTeacher toGetDTO(Teacher teacher);
+    TeacherInfoDto toGetDTO(Teacher teacher);
 
-    Teacher toEntity(NewTeacher newTeacher);
+    Teacher toEntity(TeacherDto teacherDto);
 }

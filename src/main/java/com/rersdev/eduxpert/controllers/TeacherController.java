@@ -1,6 +1,6 @@
 package com.rersdev.eduxpert.controllers;
 
-import com.rersdev.eduxpert.controllers.dto.insert.NewTeacher;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherDto;
 import com.rersdev.eduxpert.services.ITeacherService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -16,20 +16,20 @@ import java.util.UUID;
 @RequiredArgsConstructor
 
 @RestController
-@RequestMapping("/teacher")
+@RequestMapping("/teachers")
 public class TeacherController {
 
     private final ITeacherService teacherService;
 
     @PostMapping
-    public ResponseEntity<?> saveNewTeacher(@RequestBody NewTeacher teacherDto)
+    public ResponseEntity<?> saveNewTeacher(@RequestBody TeacherDto teacherDto)
             throws URISyntaxException {
         teacherService.save(teacherDto);
-        return ResponseEntity.created(new URI("/eduxpert/api/v1/endpoints/teacher")).build();
+        return ResponseEntity.created(new URI("/eduxpert/api/v1/endpoints/teachers")).build();
     }
 
     @GetMapping
-    public ResponseEntity<?> getTeacher(
+    public ResponseEntity<?> getTeachers(
             @PageableDefault
             Pageable pageable){
         return ResponseEntity.ok().body(teacherService.findAll(pageable));

@@ -1,7 +1,7 @@
 package com.rersdev.eduxpert.services;
 
-import com.rersdev.eduxpert.controllers.dto.get.GetTeacher;
-import com.rersdev.eduxpert.controllers.dto.insert.NewTeacher;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherInfoDto;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -10,9 +10,9 @@ import java.util.UUID;
 
 public interface ITeacherService {
 
-    Page<GetTeacher> findAll(Pageable pageable);
+    Page<TeacherInfoDto> findAll(Pageable pageable);
 
-    Optional<GetTeacher> findById(UUID id);
+    Optional<TeacherInfoDto> findById(UUID id);
 
-    void save(NewTeacher teacher);
+    void save(TeacherDto teacher);
 }
