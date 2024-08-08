@@ -30,11 +30,18 @@ public record PersonDto(
         String address,
 
         @JsonIgnore
-        LocalDateTime dateCreated
+        LocalDateTime dateCreated,
+
+        @JsonIgnore
+        LocalDateTime dateUpdated
 
 ) implements Serializable {
 
     public PersonDto {
-        dateCreated = LocalDateTime.now();
+        dateUpdated = LocalDateTime.now();
+
+        if (dateCreated == null) {
+            dateCreated = LocalDateTime.now();
+        }
     }
 }
