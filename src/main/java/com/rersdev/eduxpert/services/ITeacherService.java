@@ -2,6 +2,8 @@ package com.rersdev.eduxpert.services;
 
 import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherInfoDto;
 import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherDto;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherPartialInfoDto;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherPartialUpdateDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,7 +14,11 @@ public interface ITeacherService {
 
     Page<TeacherInfoDto> findAll(Pageable pageable);
 
-    Optional<TeacherInfoDto> findById(UUID id);
+    Optional<TeacherPartialInfoDto> findById(UUID id);
 
     void save(TeacherDto teacher);
+
+    TeacherPartialInfoDto partialUpdate(UUID id, TeacherPartialUpdateDto teacherPartialUpdateDto);
+
+    void deleteByAdmin(UUID id);
 }
