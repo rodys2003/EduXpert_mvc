@@ -2,6 +2,7 @@ package com.rersdev.eduxpert.controllers.mappers;
 
 import com.rersdev.eduxpert.controllers.dto.users.UserInfoDto;
 import com.rersdev.eduxpert.controllers.dto.users.UserDto;
+import com.rersdev.eduxpert.controllers.dto.users.UserPartialInfoDto;
 import com.rersdev.eduxpert.persistences.entities.auth.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
@@ -10,6 +11,8 @@ import org.mapstruct.MappingConstants;
 public interface UserMapper {
 
     UserInfoDto toDTO(User user);
+
+    UserPartialInfoDto toDto(User user);
 
     User toEntity(UserDto userDto);
 }
