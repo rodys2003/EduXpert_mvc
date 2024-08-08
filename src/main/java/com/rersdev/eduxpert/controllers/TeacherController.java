@@ -1,6 +1,8 @@
 package com.rersdev.eduxpert.controllers;
 
 import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherDto;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherPartialInfoDto;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherPartialUpdateDto;
 import com.rersdev.eduxpert.services.ITeacherService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +38,21 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getTeacherById(@PathVariable UUID id){
+    public ResponseEntity<TeacherPartialInfoDto> getTeacherById(@PathVariable UUID id){
        return teacherService.findById(id).map(ResponseEntity::ok)
                .orElseThrow(() -> new EntityNotFoundException("Profesor no encontrado"));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TeacherPartialInfoDto> updateTeacherPartial(
+            @PathVariable UUID id,
+            @RequestBody TeacherPartialUpdateDto teacherUpdated){
+        return ResponseEntity.ok().body(teacherService.partialUpdate(id, teacherUpdated));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTeacherById(@PathVariable UUID id){
+        teacherService.deleteByAdmin(id);
+        return ResponseEntity.noContent().build();
     }
 }
