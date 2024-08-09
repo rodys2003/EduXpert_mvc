@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public interface ITeacherService {
 
-    Page<TeacherInfoDto> findAll(Pageable pageable);
+    Page<TeacherInfoDto> findAll(String status, boolean isActive, Pageable pageable);
 
     Optional<TeacherPartialInfoDto> findById(UUID id);
 

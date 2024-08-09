@@ -43,8 +43,8 @@ public class TeacherServiceImpl implements ITeacherService {
     }
 
     @Override
-    public Page<TeacherInfoDto> findAll(Pageable pageable) {
-        List<TeacherInfoDto> teacherDtoList = teacherRepository.findAllByStatus(TeacherStatus.ACTIVO, pageable).stream()
+     public Page<TeacherInfoDto> findAll(String status, boolean isActive, Pageable pageable) {
+        List<TeacherInfoDto> teacherDtoList = teacherRepository.findAllByStatusAndUserIsActive(TeacherStatus.valueOf(status), isActive, pageable).stream()
                 .map(teacherMapper::toDTO)
                 .toList();
         return new PageImpl<>(teacherDtoList);
