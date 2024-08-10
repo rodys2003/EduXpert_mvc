@@ -1,5 +1,6 @@
 package com.rersdev.eduxpert.controllers.dto.users.person;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rersdev.eduxpert.controllers.dto.users.UserDto;
 import jakarta.validation.constraints.Past;
@@ -18,6 +19,7 @@ public record PersonDto(
 
         String lastName,
 
+        @JsonFormat(pattern = "dd-MM-yyyy")
         @Past
         LocalDate dateBirth,
 
