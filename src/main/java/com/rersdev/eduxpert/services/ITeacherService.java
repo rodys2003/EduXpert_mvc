@@ -16,9 +16,11 @@ public interface ITeacherService {
 
     Optional<TeacherPartialInfoDto> findById(UUID id);
 
-    void save(TeacherDto teacher);
+    UUID save(TeacherDto teacher);
 
     TeacherPartialInfoDto partialUpdate(UUID id, TeacherPartialUpdateDto teacherPartialUpdateDto);
 
     void deleteByAdmin(UUID id);
+
+    void updateStatus(String status, UUID id);
 }
