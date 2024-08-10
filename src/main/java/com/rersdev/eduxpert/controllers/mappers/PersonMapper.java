@@ -19,5 +19,5 @@ public interface PersonMapper {
 
     Person toEntity(PersonDto personDto);
 
-    Person toEntity(@MappingTarget Person person, PersonPartialUpdateDto personPartialUpdateDto);
+    void toEntity(@MappingTarget Person person, PersonPartialUpdateDto personPartialUpdateDto);
 }

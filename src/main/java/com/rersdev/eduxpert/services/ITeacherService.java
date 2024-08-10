@@ -12,13 +12,15 @@ import java.util.UUID;
 
 public interface ITeacherService {
 
-    Page<TeacherInfoDto> findAll(Pageable pageable);
+    Page<TeacherInfoDto> findAll(String status, boolean isActive, Pageable pageable);
 
     Optional<TeacherPartialInfoDto> findById(UUID id);
 
-    void save(TeacherDto teacher);
+    UUID save(TeacherDto teacher);
 
     TeacherPartialInfoDto partialUpdate(UUID id, TeacherPartialUpdateDto teacherPartialUpdateDto);
 
     void deleteByAdmin(UUID id);
+
+    void updateStatus(String status, UUID id);
 }
