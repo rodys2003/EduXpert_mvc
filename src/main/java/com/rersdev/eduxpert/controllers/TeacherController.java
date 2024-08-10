@@ -1,11 +1,10 @@
 package com.rersdev.eduxpert.controllers;
 
-import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherDto;
-import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherPartialInfoDto;
-import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherPartialUpdateDto;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.*;
 import com.rersdev.eduxpert.services.ITeacherService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -24,34 +23,51 @@ public class TeacherController {
     private final ITeacherService teacherService;
 
     @PostMapping
-    public ResponseEntity<?> saveNewTeacher(@RequestBody TeacherDto teacherDto)
+    public ResponseEntity<URI> saveNewTeacher(@RequestBody TeacherDto teacherDto)
             throws URISyntaxException {
-        teacherService.save(teacherDto);
-        return ResponseEntity.created(new URI("/eduxpert/api/v1/endpoints/teachers")).build();
+        UUID id = teacherService.save(teacherDto);
+        return ResponseEntity.created(new URI("/eduxpert/api/v1/endpoints/teachers/" + id)).build();
     }
 
     @GetMapping
-    public ResponseEntity<?> getTeachers(
-            @PageableDefault
-            Pageable pageable){
-        return ResponseEntity.ok().body(teacherService.findAll(pageable));
+    public ResponseEntity<Page<TeacherInfoDto>> getAllTeachers(
+            @RequestParam(required = false) String status,
+            @RequestParam boolean isActive,
+            @PageableDefault(sort = "person.lastName")
+            Pageable pageable) {
+        return ResponseEntity.ok().body(teacherService.findAll(status, isActive, pageable));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TeacherPartialInfoDto> getTeacherById(@PathVariable UUID id){
-       return teacherService.findById(id).map(ResponseEntity::ok)
-               .orElseThrow(() -> new EntityNotFoundException("Profesor no encontrado"));
+    public ResponseEntity<TeacherPartialInfoDto> getTeacherById(@PathVariable UUID id) {
+        return teacherService.findById(id).map(ResponseEntity::ok)
+                .orElseThrow(() -> new EntityNotFoundException("Teacher with id " + id + " not found"));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TeacherPartialInfoDto> updateTeacherPartial(
             @PathVariable UUID id,
-            @RequestBody TeacherPartialUpdateDto teacherUpdated){
+            @RequestBody TeacherPartialUpdateDto teacherUpdated) {
         return ResponseEntity.ok().body(teacherService.partialUpdate(id, teacherUpdated));
     }
 
+    @PutMapping("/{id}/")
+    public ResponseEntity<TeacherInfoDto> updateTeacherInfo(@PathVariable UUID id,
+                                                            @RequestBody TeacherUpdateDto teacherUpdated){
+        return ResponseEntity.ok().body(teacherService.updateByAdmin(id, teacherUpdated
+        ));
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<String> updateTeacherStatus(
+            @RequestParam String status,
+            @PathVariable UUID id) {
+        teacherService.updateStatus(status, id);
+        return ResponseEntity.ok().body("Status updated successfully");
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTeacherById(@PathVariable UUID id){
+    public ResponseEntity<Void> deleteTeacherById(@PathVariable UUID id) {
         teacherService.deleteByAdmin(id);
         return ResponseEntity.noContent().build();
     }
