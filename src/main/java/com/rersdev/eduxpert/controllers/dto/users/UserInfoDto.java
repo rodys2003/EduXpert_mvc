@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 @Builder
 public class UserInfoDto implements Serializable {
 
-        String id;
-
         String documentNumber;
 
         String password;

@@ -21,7 +21,7 @@ public class TeacherInfoDto implements Serializable {
 
         String status;
 
-        @JsonFormat(pattern = "MM-dd-yyyy")
+        @JsonFormat(pattern = "dd-MM-yyyy")
         LocalDate dateStart;
 
         PersonInfoDto person;
