@@ -1,5 +1,8 @@
 package com.rersdev.eduxpert.services.impl;
 
+import com.rersdev.eduxpert.config.advice.user.InvalidStatusException;
+import com.rersdev.eduxpert.config.advice.user.UserAlreadyExistException;
+import com.rersdev.eduxpert.config.advice.user.UserNotFoundException;
 import com.rersdev.eduxpert.controllers.dto.users.teacher.*;
 import com.rersdev.eduxpert.controllers.mappers.TeacherMapper;
 import com.rersdev.eduxpert.persistences.entities.Teacher;
@@ -30,7 +33,7 @@ public class TeacherServiceImpl implements ITeacherService {
     public UUID save(TeacherDto teacherDto) {
         String documentNumber = teacherDto.person().user().documentNumber();
         if (teacherRepository.existsTeacherByDocumentNumber(documentNumber)) {
-            throw new RuntimeException("A user with that document number already exists");
+            throw new UserAlreadyExistException("Ya existe un usuario con el numero de documento: " + documentNumber);
         }
         Teacher teacher = this.teacherRepository.save(teacherMapper.toEntity(teacherDto));
         return teacher.getId();
@@ -38,8 +41,7 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public TeacherPartialInfoDto partialUpdate(UUID id, TeacherPartialUpdateDto teacherPartialUpdateDto) {
-        Teacher teacherFromDb = teacherRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Teacher not found"));
+        Teacher teacherFromDb = this.findTeacherByIdOrThrow(id);
 
         teacherMapper.toEntity(teacherFromDb, teacherPartialUpdateDto);
         return teacherMapper.toDto(teacherRepository.save(teacherFromDb));
@@ -47,9 +49,7 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public TeacherInfoDto updateByAdmin(UUID id, TeacherUpdateDto teacherDto) {
-
-        Teacher teacherFromDB = teacherRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Teacher not found"));
+        Teacher teacherFromDB = this.findTeacherByIdOrThrow(id);
 
         teacherMapper.toEntity(teacherFromDB, teacherDto);
         return teacherMapper.toDTO(teacherRepository.save(teacherFromDB));
@@ -76,18 +76,14 @@ public class TeacherServiceImpl implements ITeacherService {
     public void updateStatus(String status, UUID id) {
         String validStatus = this.validateStatus(status);
 
-        Teacher teacherFromDb = teacherRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Teacher not found"));
+        Teacher teacherFromDb = this.findTeacherByIdOrThrow(id);
 
         User user = teacherFromDb.getPerson().getUser();
 
         String statusDb = teacherFromDb.getStatus().toString();
         if ("ACTIVO".equals(validStatus)  && "RETIRADO".equals(statusDb) || "LICENCIA".equals(validStatus) && "RETIRADO".equals(statusDb)) {
-            System.out.println("activo y licencia ");
             user.setIsActive(true);
-
         } else if ("RETIRADO".equals(validStatus)) {
-            System.out.println("retirado");
             user.setIsActive(false);
         }
 
@@ -98,7 +94,7 @@ public class TeacherServiceImpl implements ITeacherService {
     @Override
     public void deleteByAdmin(UUID id) {
         if (!teacherRepository.existsById(id)) {
-            throw new RuntimeException("Teacher not found");
+            throw new UserNotFoundException("No se ha encontrado el profesor con id " + id);
         }
         teacherRepository.deleteById(id);
     }
@@ -114,8 +110,13 @@ public class TeacherServiceImpl implements ITeacherService {
 
     private String validateStatus(String status) {
         if (!isValidStatus(status)) {
-            throw new RuntimeException("invalid status: " + status);
+            throw new InvalidStatusException(status + " => no es un estado valido");
         }
         return status.toUpperCase();
+    }
+
+    private Teacher findTeacherByIdOrThrow(UUID id) {
+        return teacherRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("No se ha encontrado el profesor con id: " + id));
     }
 }
