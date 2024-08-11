@@ -1,8 +1,9 @@
 package com.rersdev.eduxpert.controllers;
 
+import com.rersdev.eduxpert.config.advice.user.UserNotFoundException;
 import com.rersdev.eduxpert.controllers.dto.users.teacher.*;
 import com.rersdev.eduxpert.services.ITeacherService;
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +24,7 @@ public class TeacherController {
     private final ITeacherService teacherService;
 
     @PostMapping
-    public ResponseEntity<URI> saveNewTeacher(@RequestBody TeacherDto teacherDto)
+    public ResponseEntity<URI> saveNewTeacher(@RequestBody @Valid TeacherDto teacherDto)
             throws URISyntaxException {
         UUID id = teacherService.save(teacherDto);
         return ResponseEntity.created(new URI("/eduxpert/api/v1/endpoints/teachers/" + id)).build();
@@ -41,19 +42,19 @@ public class TeacherController {
     @GetMapping("/{id}")
     public ResponseEntity<TeacherPartialInfoDto> getTeacherById(@PathVariable UUID id) {
         return teacherService.findById(id).map(ResponseEntity::ok)
-                .orElseThrow(() -> new EntityNotFoundException("Teacher with id " + id + " not found"));
+                .orElseThrow(() -> new UserNotFoundException("No se ha encontrado el profesor con id: " + id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TeacherPartialInfoDto> updateTeacherPartial(
             @PathVariable UUID id,
-            @RequestBody TeacherPartialUpdateDto teacherUpdated) {
+            @RequestBody @Valid TeacherPartialUpdateDto teacherUpdated) {
         return ResponseEntity.ok().body(teacherService.partialUpdate(id, teacherUpdated));
     }
 
     @PutMapping("/{id}/")
     public ResponseEntity<TeacherInfoDto> updateTeacherInfo(@PathVariable UUID id,
-                                                            @RequestBody TeacherUpdateDto teacherUpdated){
+                                                            @RequestBody @Valid TeacherUpdateDto teacherUpdated){
         return ResponseEntity.ok().body(teacherService.updateByAdmin(id, teacherUpdated
         ));
     }

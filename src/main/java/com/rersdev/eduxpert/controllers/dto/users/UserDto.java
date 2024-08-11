@@ -1,12 +1,14 @@
 package com.rersdev.eduxpert.controllers.dto.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public record UserDto(
 
+        @NotBlank(message = "El numero de documento es requerido")
         String documentNumber,
 
         @JsonIgnore
