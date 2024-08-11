@@ -1,9 +1,6 @@
 package com.rersdev.eduxpert.services;
 
-import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherInfoDto;
-import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherDto;
-import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherPartialInfoDto;
-import com.rersdev.eduxpert.controllers.dto.users.teacher.TeacherPartialUpdateDto;
+import com.rersdev.eduxpert.controllers.dto.users.teacher.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,6 +16,8 @@ public interface ITeacherService {
     UUID save(TeacherDto teacher);
 
     TeacherPartialInfoDto partialUpdate(UUID id, TeacherPartialUpdateDto teacherPartialUpdateDto);
+
+    TeacherInfoDto updateByAdmin(UUID id, TeacherUpdateDto teacherUpdated);
 
     void deleteByAdmin(UUID id);
 
