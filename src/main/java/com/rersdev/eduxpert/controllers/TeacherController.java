@@ -1,7 +1,7 @@
 package com.rersdev.eduxpert.controllers;
 
 import com.rersdev.eduxpert.config.advice.user.UserNotFoundException;
-import com.rersdev.eduxpert.controllers.dto.users.teacher.*;
+import com.rersdev.eduxpert.dto.users.teacher.*;
 import com.rersdev.eduxpert.services.ITeacherService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

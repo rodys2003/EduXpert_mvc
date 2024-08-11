@@ -1,6 +1,6 @@
-package com.rersdev.eduxpert.controllers.dto.users.teacher;
+package com.rersdev.eduxpert.dto.users.teacher;
 
-import com.rersdev.eduxpert.controllers.dto.users.person.PersonPartialUpdateDto;
+import com.rersdev.eduxpert.dto.users.person.PersonPartialUpdateDto;
 import jakarta.validation.Valid;
 
 import java.io.Serializable;

@@ -1,8 +1,8 @@
-package com.rersdev.eduxpert.controllers.dto.users.teacher;
+package com.rersdev.eduxpert.dto.users.teacher;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.rersdev.eduxpert.controllers.dto.users.person.PersonInfoDto;
+import com.rersdev.eduxpert.dto.users.person.PersonInfoDto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

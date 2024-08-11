@@ -1,25 +1,38 @@
-package com.rersdev.eduxpert.controllers.dto.users.teacher;
+package com.rersdev.eduxpert.dto.users.teacher;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.rersdev.eduxpert.controllers.dto.users.person.PersonUpdateDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rersdev.eduxpert.dto.users.person.PersonDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public record TeacherUpdateDto(
+public record TeacherDto(
 
         @NotBlank(message = "La especializacion es requerida")
         @Size(max = 50, message = "La espcializacion debe contener menos de 50 caracteres")
         String specialization,
 
         @JsonFormat(pattern = "dd-MM-yyyy")
+        @PastOrPresent
         LocalDate dateStart,
 
+        @JsonIgnore
+        String status,
+
         @Valid
-        PersonUpdateDto person
+        PersonDto person
 
 ) implements Serializable {
+
+    public TeacherDto {
+        if (dateStart == null || status == null) {
+            status = "ACTIVO";
+            dateStart = LocalDate.now();
+        }
+    }
 }

@@ -1,33 +1,27 @@
-package com.rersdev.eduxpert.controllers.dto.users.person;
+package com.rersdev.eduxpert.dto.users.person;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rersdev.eduxpert.controllers.dto.users.UserDto;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public record PersonDto(
+public record PersonUpdateDto(
 
-        @NotNull(message = "El numero de documento es requerido ")
+        @NotNull(message = "El tipo de documento es requerido ")
         @Max( value = 1, message = "El tipo de documento debe estar entre 1-4")
         Byte documentType,
 
-        @Valid
-        UserDto user,
-
-        @NotBlank(message = "Los nombres son requeridos")
-        @Size(min = 4, max = 70, message = "Los nombres deben contener de 2 a 70 caracteres")
+        @NotBlank(message = "Los  apellidos son requeridos")
+        @Size(min = 4, max = 70, message = "Los nombres deben contener de 4 a 70 caracteres")
         String name,
 
         @NotBlank(message = "Los  apellidos son requeridos")
         @Size(min = 7, max = 80, message = "Los apellidos deben contener de 7 a 80 caracteres")
         String lastName,
 
-        @NotNull(message = "La fecha de nacimiento es requerida")
         @JsonFormat(pattern = "dd-MM-yyyy")
         @Past
         LocalDate dateBirth,
@@ -47,18 +41,11 @@ public record PersonDto(
         String address,
 
         @JsonIgnore
-        LocalDateTime dateCreated,
-
-        @JsonIgnore
         LocalDateTime dateUpdated
 
 ) implements Serializable {
 
-    public PersonDto {
+    public PersonUpdateDto{
         dateUpdated = LocalDateTime.now();
-
-        if (dateCreated == null) {
-            dateCreated = LocalDateTime.now();
-        }
     }
 }

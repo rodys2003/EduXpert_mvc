@@ -1,7 +1,7 @@
-package com.rersdev.eduxpert.controllers.dto.users.person;
+package com.rersdev.eduxpert.dto.users.person;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.rersdev.eduxpert.controllers.dto.users.UserInfoDto;
+import com.rersdev.eduxpert.dto.users.UserInfoDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

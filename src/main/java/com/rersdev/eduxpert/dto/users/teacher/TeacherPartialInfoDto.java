@@ -1,7 +1,7 @@
-package com.rersdev.eduxpert.controllers.dto.users.teacher;
+package com.rersdev.eduxpert.dto.users.teacher;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.rersdev.eduxpert.controllers.dto.users.person.PersonPartialInfoDto;
+import com.rersdev.eduxpert.dto.users.person.PersonPartialInfoDto;
 
 import java.io.Serializable;
 import java.time.LocalDate;

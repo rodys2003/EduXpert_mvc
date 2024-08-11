@@ -1,4 +1,4 @@
-package com.rersdev.eduxpert.controllers.dto.users.person;
+package com.rersdev.eduxpert.dto.users.person;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;

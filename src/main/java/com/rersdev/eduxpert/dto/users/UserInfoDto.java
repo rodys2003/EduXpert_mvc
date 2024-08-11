@@ -1,4 +1,4 @@
-package com.rersdev.eduxpert.controllers.dto.users;
+package com.rersdev.eduxpert.dto.users;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
