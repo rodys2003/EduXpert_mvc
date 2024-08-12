@@ -1,6 +1,8 @@
 package com.rersdev.eduxpert.dto.users;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +23,11 @@ public class UserInfoDto implements Serializable {
 
         Boolean isActive;
 
+        @Schema(type = "string", example = "20-05-1998 11:10")
+        @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
         LocalDateTime dateCreated;
 
+        @Schema(type = "string", example = "20-05-1998 11:10")
+        @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
         LocalDateTime dateUpdated;
 }

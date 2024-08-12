@@ -2,6 +2,7 @@ package com.rersdev.eduxpert.dto.users.person;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rersdev.eduxpert.dto.users.UserInfoDto;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,28 +17,31 @@ import java.time.LocalDateTime;
 @Builder
 public class PersonInfoDto implements Serializable {
 
-        Byte documentType;
+    Byte documentType;
 
-        UserInfoDto user;
+    UserInfoDto user;
 
-        String name;
+    String name;
 
-        String lastName;
+    String lastName;
 
-        @JsonFormat(pattern = "dd-MM-yyyy")
-        LocalDate dateBirth;
+    @Schema(type = "string", example = "20-05-1998")
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    LocalDate dateBirth;
 
-        String phoneNumber;
+    String phoneNumber;
 
-        String gender;
+    String gender;
 
-        String email;
+    String email;
 
-        String address;
+    String address;
 
-        @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
-        LocalDateTime dateCreated;
+    @Schema(type = "string", example = "20-05-1998 11:10")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+    LocalDateTime dateCreated;
 
-        @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
-        LocalDateTime dateUpdated;
+    @Schema(type = "string", example = "20-05-1998 11:10")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+    LocalDateTime dateUpdated;
 }

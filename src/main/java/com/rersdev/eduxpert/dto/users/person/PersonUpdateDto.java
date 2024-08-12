@@ -1,7 +1,7 @@
 package com.rersdev.eduxpert.dto.users.person;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 
 import java.io.Serializable;
@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 
 public record PersonUpdateDto(
 
+        @Schema(type = "integer", example = "1")
         @NotNull(message = "El tipo de documento es requerido ")
         @Max( value = 1, message = "El tipo de documento debe estar entre 1-4")
         Byte documentType,
@@ -22,6 +23,7 @@ public record PersonUpdateDto(
         @Size(min = 7, max = 80, message = "Los apellidos deben contener de 7 a 80 caracteres")
         String lastName,
 
+        @Schema(type = "string", example = "14-01-1995", description = "Fecha en formato dd-MM-yyyy")
         @JsonFormat(pattern = "dd-MM-yyyy")
         @Past
         LocalDate dateBirth,
@@ -40,7 +42,7 @@ public record PersonUpdateDto(
         @Size(min = 8, max = 80, message = "La direccion debe contener de 8 a 80 caracteres")
         String address,
 
-        @JsonIgnore
+        @Schema(hidden = true)
         LocalDateTime dateUpdated
 
 ) implements Serializable {
