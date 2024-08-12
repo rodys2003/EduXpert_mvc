@@ -1,8 +1,8 @@
-package com.rersdev.eduxpert.controllers.mappers;
+package com.rersdev.eduxpert.mappers;
 
-import com.rersdev.eduxpert.controllers.dto.users.UserInfoDto;
-import com.rersdev.eduxpert.controllers.dto.users.UserDto;
-import com.rersdev.eduxpert.controllers.dto.users.UserPartialInfoDto;
+import com.rersdev.eduxpert.dto.users.UserInfoDto;
+import com.rersdev.eduxpert.dto.users.UserDto;
+import com.rersdev.eduxpert.dto.users.UserPartialInfoDto;
 import com.rersdev.eduxpert.persistences.entities.auth.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

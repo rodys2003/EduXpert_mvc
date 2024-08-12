@@ -1,6 +1,6 @@
 package com.rersdev.eduxpert.services;
 
-import com.rersdev.eduxpert.controllers.dto.users.teacher.*;
+import com.rersdev.eduxpert.dto.users.teacher.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

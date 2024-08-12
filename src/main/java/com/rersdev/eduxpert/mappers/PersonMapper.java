@@ -1,6 +1,6 @@
-package com.rersdev.eduxpert.controllers.mappers;
+package com.rersdev.eduxpert.mappers;
 
-import com.rersdev.eduxpert.controllers.dto.users.person.*;
+import com.rersdev.eduxpert.dto.users.person.*;
 import com.rersdev.eduxpert.persistences.entities.Person;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

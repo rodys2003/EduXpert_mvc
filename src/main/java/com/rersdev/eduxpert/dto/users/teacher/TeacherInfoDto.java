@@ -1,8 +1,9 @@
-package com.rersdev.eduxpert.controllers.dto.users.teacher;
+package com.rersdev.eduxpert.dto.users.teacher;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.rersdev.eduxpert.controllers.dto.users.person.PersonInfoDto;
+import com.rersdev.eduxpert.dto.users.person.PersonInfoDto;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,14 +16,15 @@ import java.time.LocalDate;
 @Builder
 public class TeacherInfoDto implements Serializable {
 
-        String id;
+    String id;
 
-        String specialization;
+    String specialization;
 
-        String status;
+    String status;
 
-        @JsonFormat(pattern = "dd-MM-yyyy")
-        LocalDate dateStart;
+    @Schema(type = "string", example = "20-05-1998")
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    LocalDate dateStart;
 
-        PersonInfoDto person;
+    PersonInfoDto person;
 }

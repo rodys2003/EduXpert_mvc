@@ -1,4 +1,4 @@
-package com.rersdev.eduxpert.controllers.dto.users;
+package com.rersdev.eduxpert.dto.users;
 
 import java.io.Serializable;
 
