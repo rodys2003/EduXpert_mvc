@@ -11,7 +11,7 @@ public record UserDto(
 
         @Schema(example = "100002458")
         @NotBlank(message = "El numero de documento es requerido")
-        @Pattern(regexp = "^\\d{6,15}$\n", message = "El numero de documento debe contener solo numeros y" +
+        @Pattern(regexp = "^\\d{6,15}$", message = "El numero de documento debe contener solo numeros y" +
                 " una longitud de 6-15 digitos")
         String documentNumber,
 
