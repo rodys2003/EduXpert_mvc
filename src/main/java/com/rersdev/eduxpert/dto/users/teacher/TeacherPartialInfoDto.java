@@ -14,7 +14,7 @@ public record TeacherPartialInfoDto(
         String specialization,
 
         @Schema(type = "string", example = "20-05-1998")
-        @JsonFormat(pattern = "MM-dd-yyyy")
+        @JsonFormat(pattern = "dd-MM-yyyy")
         LocalDate dateStart,
 
         PersonPartialInfoDto person
